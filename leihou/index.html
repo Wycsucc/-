@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>-->
+    <!--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <script src="jquery-3.3.1.js"></script>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+        /*td:hover{*/
+            /*display: block;*/
+            /*font-weight: bold;*/
+            /*font-size: 50px;*/
+
+        /*}*/
+        div{
+            margin-top: 50px;
+            position: absolute;
+            width: 100%;
+            /*background: #0c5460;*/
+            animation: ass 2s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            text-align: center;
+        }
+        button{
+            background: #548aff;
+            color: white;
+        }
+        img{
+            z-index: -1;
+            width: 300px;
+            margin: 0;
+            transform: scale(1.1,1);
+        }
+        input{
+            margin-top: 350px;
+            width: 60%;
+            height: 30px;
+            border-radius: .2em;
+            border: 0px;
+            z-index: 11;
+            box-shadow: 1px 1px .5em #a8a8a8;
+            font-size: 20px;
+            padding:10px;
+        }
+        input:hover{
+            box-shadow: 2px 2px .5em #929292;
+        }
+        input:focus{
+            outline: none;
+        }
+
+        div:hover{
+            /*transform: scale(2);*/
+            /*background: #1c7430;*/
+            /*!*background-image: url("./img/hai.jpg");*!*/
+            /*opacity:0.1;*/
+        }
+        /*@keyframes ass {*/
+            /*0%{background-image:url("./img/fruit.jpg");transform: rotate(20deg)}*/
+            /*25%{background-image:url("./img/fruit.jpg");transform: rotate(40deg) scale(5)}*/
+            /*50%{background-image:url("./img/fruit.jpg");transform: rotate(60deg) }*/
+            /*75%{background-image:url("./img/fruit.jpg");transform: rotate(80deg) scale(5)}*/
+            /*100%{background-image:url("./img/fruit.jpg");transform: rotate(100deg)}*/
+        /*}*/
+        .credit{
+            text-align: center;
+            color: rgba(255,255,255,0.4);
+
+        }
+
+        .content{
+            padding-top: 45px;
+            padding-bottom: 20px;
+        }
+
+        .button_container{
+            width: 176px;
+            margin-top: 30px;
+            padding-top: 40px;
+        }
+
+        .button_su{
+            overflow: hidden;
+            position: relative;
+            display: inline-block;
+            border-radius: 3px;
+            margin-bottom: 30px;
+        }
+
+        .su_button_circle{
+            background-color: red;
+            border-radius: 1000px;
+            position: absolute;
+            left:0;
+            top:0;
+            width: 0px;
+            height: 0px;
+            margin-left: 0px;
+            margin-top: 0px;
+            pointer-events: none;
+            /*animation-timing-function: ease-in-out; */
+        }
+
+        .button_su_inner{
+            display: inline-block;
+            background: #F8B627;
+            color: #F4F4F4;
+            font-size: 16px;
+            font-weight: normal;
+            width: 132px;
+            text-align: center;
+            border-radius: 3px;
+            transition: 400ms;
+            text-decoration: none;
+            padding: 22px;
+            z-index: 100000;
+        }
+
+        .button_text_container{
+            position:relative;
+            z-index: 10000;
+        }
+
+        .explode-circle {
+            animation: explode 0.5s forwards;
+
+        }
+
+        .desplode-circle{
+            animation: desplode 0.5s forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                width: 0px;
+                height: 0px;
+                margin-left: 0px;
+                margin-top: 0px;
+                background-color: rgba(42, 53, 80,0.2);
+            }
+            100% {
+                width: 400px;
+                height: 400px;
+                margin-left: -200px;
+                margin-top: -200px;
+                background-color: rgba(20, 180, 87,0.8);
+            }
+        }
+
+        @keyframes desplode {
+            0% {
+                width: 400px;
+                height: 400px;
+                margin-left: -200px;
+                margin-top: -200px;
+                background-color: rgba(20, 180, 87, 0.8);
+            }
+            100% {
+                width: 0px;
+                height: 0px;
+                margin-left: 0px;
+                margin-top: 0px;
+                background-color: rgba(129, 80, 108, 0.6);
+            }
+        }
+    </style>
+
+    <title>test</title>
+
+</head>
+<body>
+<!--<table border="1">-->
+    <!--<tr>-->
+        <!--<td>一列</td>-->
+        <!--<td>二列</td>-->
+        <!--<td>三列</td>-->
+        <!--<td>四列</td>-->
+    <!--</tr>-->
+
+    <div style="height: 40px;background: black;opacity:0.8;margin-top: 0px">
+
+    </div>
+    <div>
+        <div>
+            <img src="img/mz.png" draggable="false" oncontextmenu="return false">
+        </div>
+        <input id="input" >
+        <div style="margin-top: 0">
+           <img src="img/mz2.png" draggable="false" oncontextmenu="return false">
+       </div>
+    </div>
+<div class="button_container">
+    <div class="button_su">
+        <span class="su_button_circle">
+        </span>
+        <a href="#" class="button_su_inner">
+          <span class="button_text_container">
+            Simple button
+          </span>
+        </a>
+    </div>
+</div>
+<!--</table>-->
+</body>
+</html>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $( ".button_su_inner" ).mouseenter(function(e) {
+            var parentOffset = $(this).offset();
+
+            var relX = e.pageX - parentOffset.left;
+            var relY = e.pageY - parentOffset.top;
+            $(this).prev(".su_button_circle").css({"left": relX, "top": relY });
+            $(this).prev(".su_button_circle").removeClass("desplode-circle");
+            $(this).prev(".su_button_circle").addClass("explode-circle");
+
+        });
+
+        $( ".button_su_inner" ).mouseleave(function(e) {
+
+            var parentOffset = $(this).offset();
+
+            var relX = e.pageX - parentOffset.left;
+            var relY = e.pageY - parentOffset.top;
+            $(this).prev(".su_button_circle").css({"left": relX, "top": relY });
+            $(this).prev(".su_button_circle").removeClass("explode-circle");
+            $(this).prev(".su_button_circle").addClass("desplode-circle");
+
+        });
+
+        let s = $("input");
+        s.keypress(function (eve) {
+            if (eve.keyCode === 13){
+                let text = s.val();
+                let Text  = $.trim(text);
+                alert(Text);
+            }
+        })
+    });
+
+    function blod() {
+        if (!document.getElementsByName) return false;
+
+        var row = document.getElementsByTagName("td");
+        for (var i = 0; i<row.length;i++) {
+            row[i].onmouseover = function () {
+                this.style.fontSize = "50px";
+                this.style.background = "black";
+            };
+            row[i].onmouseout = function () {
+                this.style.fontWeight = "bold";
+                this.style.background = "white";
+            };
+        }
+    }
+
+    function addClass(element,value) {
+        if (!element.className){
+            element.className = value;
+        } else {
+            newClassName = element.className;
+            newClassName+=" ";
+            newClassName+= value;
+            element.className = newClassName;
+        }
+    }
+
+    function insertAfter(newElement,targetElement) {
+        let parent = targetElement.parentNode;
+        if (parent.lastChild === targetElement){
+            parent.appendChild(newElement);
+        } else {
+            parent.insertBefore(newElement,targetElement.nextSibling);
+        }
+    }
+    
+    function getNextElement(node){
+        
+        if (node.type === 1) {
+            return node
+        }
+        if (node.nextSibling){
+            return getNextElement(node.nextSibling)
+        }
+        return null;
+    }
+
+    function addLoadEvent(func){
+        let oldonload = window.onload;
+        if (typeof window.onload !== "function") {
+            window.onload = func;
+        }else {
+            window.onload = function () {
+                oldonload();
+                func();
+            }
+        }
+    }
+    addLoadEvent(blod());
+</script>
